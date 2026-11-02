@@ -3,13 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My IDCC Project</title>
+  <title>FocusFlow - Task & Focus Planner</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>My IDCC Project</h1>
-  <p id="message">Hello!</p>
-  <button id="btn">Click me</button>
+  <main class="app">
+    <header>
+      <h1>Focus<span>Flow</span></h1>
+      <button id="themeBtn" class="icon-btn" aria-label="Toggle theme">🌙</button>
+    </header>
+
+    <section class="card">
+      <h2>Focus Timer</h2>
+      <div id="time" class="time">25:00</div>
+      <div class="row center">
+        <button id="startBtn">Start</button>
+        <button id="resetBtn" class="ghost">Reset</button>
+      </div>
+      <p id="timerMsg" class="muted center-text">Stay focused for 25 minutes.</p>
+    </section>
+
+    <section class="card">
+      <h2>My Tasks</h2>
+      <form id="taskForm" class="row">
+        <input id="taskInput" type="text" placeholder="Add a new task..." maxlength="100" required>
+        <button type="submit">Add</button>
+      </form>
+
+      <div class="filters">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="active">Active</button>
+        <button class="filter" data-filter="done">Done</button>
+      </div>
+
+      <ul id="taskList"></ul>
+      <p id="stats" class="muted"></p>
+    </section>
+  </main>
+
+  <footer>Built for IDCC 2026</footer>
   <script src="script.js"></script>
 </body>
 </html>
