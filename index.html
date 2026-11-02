@@ -3,45 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FocusFlow - Task & Focus Planner</title>
+  <title>RepoLens - GitHub Profile Analyzer</title>
+  <meta name="description" content="Analyze any GitHub profile: top repositories, stars and language breakdown.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="app">
-    <header>
-      <h1>Focus<span>Flow</span></h1>
-      <button id="themeBtn" class="icon-btn" aria-label="Toggle theme">🌙</button>
+  <main class="wrap">
+    <header class="top">
+      <h1>RepoLens</h1>
+      <p>See what a developer actually builds. Enter any GitHub username.</p>
     </header>
 
-    <section class="card">
-      <h2>Focus Timer</h2>
-      <div id="time" class="time">25:00</div>
-      <div class="row center">
-        <button id="startBtn">Start</button>
-        <button id="resetBtn" class="ghost">Reset</button>
-      </div>
-      <p id="timerMsg" class="muted center-text">Stay focused for 25 minutes.</p>
-    </section>
+    <form id="searchForm" class="search">
+      <input id="username" type="text" placeholder="e.g. torvalds" autocomplete="off" spellcheck="false" required>
+      <button type="submit">Analyze profile</button>
+    </form>
+    <div class="examples">Try: <button type="button" class="chip">torvalds</button> <button type="button" class="chip">gaearon</button> <button type="button" class="chip">sindresorhus</button></div>
 
-    <section class="card">
-      <h2>My Tasks</h2>
-      <form id="taskForm" class="row">
-        <input id="taskInput" type="text" placeholder="Add a new task..." maxlength="100" required>
-        <button type="submit">Add</button>
-      </form>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
 
-      <div class="filters">
-        <button class="filter active" data-filter="all">All</button>
-        <button class="filter" data-filter="active">Active</button>
-        <button class="filter" data-filter="done">Done</button>
+    <section id="result" hidden>
+      <div class="profile">
+        <img id="avatar" alt="">
+        <div class="who">
+          <h2 id="name"></h2>
+          <a id="handle" target="_blank" rel="noopener"></a>
+          <p id="bio"></p>
+          <p id="meta" class="meta"></p>
+        </div>
       </div>
 
-      <ul id="taskList"></ul>
-      <p id="stats" class="muted"></p>
+      <div class="stats">
+        <div><b id="sRepos">0</b><span>Public repos</span></div>
+        <div><b id="sStars">0</b><span>Total stars</span></div>
+        <div><b id="sForks">0</b><span>Total forks</span></div>
+        <div><b id="sFollowers">0</b><span>Followers</span></div>
+      </div>
+
+      <h3>Language breakdown</h3>
+      <div id="langBar" class="langbar" role="img" aria-label="Language breakdown"></div>
+      <ul id="langLegend" class="legend"></ul>
+
+      <h3>Top repositories</h3>
+      <div id="repoGrid" class="repos"></div>
     </section>
   </main>
-
-  <footer>Built for IDCC 2026</footer>
+  <footer>Built for IDCC 2026 with HTML, CSS and JavaScript. Data from the GitHub public API.</footer>
   <script src="script.js"></script>
 </body>
 </html>
